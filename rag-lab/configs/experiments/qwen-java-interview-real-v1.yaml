@@ -1,0 +1,40 @@
+experiment:
+  name: java-interview-real-v1-dev
+  seed: 42
+
+corpus:
+  raw_dir: data/corpus/java-interview-real-v1
+  markdown_dir: data/markdown/java-interview-real-v1
+
+dataset:
+  path: data/datasets/java-interview-real-v1/dev-pending-review.jsonl
+  version: java-interview-real-v1-dev-provisional
+
+embedding:
+  provider: sentence_transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  dimensions: 1024
+  batch_size: 16
+  cache_path: data/cache/embeddings-java-interview-real-v1.sqlite3
+  model_cache_path: data/cache/models
+  device: mps
+  local_files_only: true
+
+chunking:
+  strategies: [fixed, structure, parent_child]
+  fixed: {chunk_size: 512, overlap: 64}
+  structure: {max_tokens: 512, heading_prefix: true}
+  parent_child: {child_max_tokens: 256, heading_prefix: true}
+
+retrieval:
+  top_k: [1, 3, 5, 10]
+
+evaluation:
+  evidence_coverage_threshold: 0.01
+  duplicate_similarity_threshold: 0.90
+
+cloud:
+  enabled: false
+
+results:
+  comparison_csv: results/reports/java-interview-real-v1-provisional.csv

@@ -1,0 +1,13 @@
+{
+  "dataset": "java-interview-real-v1",
+  "split": "dev",
+  "count": 80,
+  "sha256": "2a45aa75709ee11bb27552d0cfb3f27939e95f01de551913cc9823649410cc37",
+  "reviewers": [
+    "dev_release_reviewer"
+  ],
+  "review_kind": "SUBAGENT_NOT_HUMAN",
+  "human_reviewed": false,
+  "test_frozen": false,
+  "materialized_at": "2026-07-28T08:40:20.985965+00:00"
+}

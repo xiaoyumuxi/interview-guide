@@ -1,0 +1,351 @@
+{
+  "experiment_id": "20260728T083734Z-47450",
+  "timestamp": "2026-07-28T08:37:34.091102+00:00",
+  "git_commit": "b5c9fc1e0cb25bf89fdf95bb0421c80a1fb5f74e",
+  "config": {
+    "experiment": {
+      "name": "java-interview-real-v1-agent-reviewed-dev",
+      "seed": 42
+    },
+    "corpus": {
+      "raw_dir": "data/corpus/java-interview-real-v1",
+      "markdown_dir": "data/markdown/java-interview-real-v1"
+    },
+    "dataset": {
+      "path": "data/datasets/java-interview-real-v1/dev-agent-reviewed.jsonl",
+      "version": "java-interview-real-v1-dev-agent-reviewed"
+    },
+    "embedding": {
+      "provider": "sentence_transformers",
+      "model": "Qwen/Qwen3-Embedding-0.6B",
+      "dimensions": 1024,
+      "batch_size": 16,
+      "cache_path": "data/cache/embeddings-java-interview-real-v1.sqlite3",
+      "model_cache_path": "data/cache/models",
+      "device": "mps",
+      "local_files_only": true
+    },
+    "chunking": {
+      "strategies": [
+        "fixed",
+        "structure",
+        "parent_child"
+      ],
+      "fixed": {
+        "chunk_size": 512,
+        "overlap": 64
+      },
+      "structure": {
+        "max_tokens": 512,
+        "heading_prefix": true
+      },
+      "parent_child": {
+        "child_max_tokens": 256,
+        "heading_prefix": true
+      }
+    },
+    "retrieval": {
+      "top_k": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    "evaluation": {
+      "evidence_coverage_threshold": 0.01,
+      "duplicate_similarity_threshold": 0.9
+    },
+    "cloud": {
+      "enabled": false
+    },
+    "results": {
+      "comparison_csv": "results/reports/java-interview-real-v1-agent-reviewed.csv"
+    }
+  },
+  "dataset_version": "java-interview-real-v1-dev-agent-reviewed",
+  "dataset_sha256": "2a45aa75709ee11bb27552d0cfb3f27939e95f01de551913cc9823649410cc37",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "environment": {
+    "python": "3.13.12 (main, Mar 25 2026, 02:48:22) [Clang 22.1.1 ]",
+    "os": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "device": "mps"
+  },
+  "documents": 48,
+  "dataset_samples": 80,
+  "shared_query_embeddings": {
+    "embedding_seconds": 0.12182912498246878,
+    "cache_hits": 72,
+    "cache_misses": 1,
+    "actual_embedding_count": 1
+  },
+  "strategies": {
+    "fixed": {
+      "chunk_count": 889,
+      "parent_count": 0,
+      "average_chunk_tokens": 499.0686164229471,
+      "p50_chunk_tokens": 512.0,
+      "p95_chunk_tokens": 512.0,
+      "index_size_estimate_bytes": 3641344,
+      "embedding_seconds": 0.08175587499863468,
+      "retrieval_seconds": 0.004905500012682751,
+      "embedding_cache_hits": 962,
+      "embedding_cache_misses": 0,
+      "actual_embedding_count": 0,
+      "metrics": {
+        "Overall": {
+          "HitRate@1": 0.7945205479452054,
+          "Recall@1": 0.723744292237443,
+          "HitRate@3": 0.9863013698630136,
+          "Recall@3": 0.9634703196347031,
+          "HitRate@5": 0.9863013698630136,
+          "Recall@5": 0.9634703196347031,
+          "HitRate@10": 1.0,
+          "Recall@10": 0.9908675799086757,
+          "MRR": 0.8832354859752121
+        },
+        "TERMINOLOGY": {
+          "HitRate@1": 0.8333333333333334,
+          "Recall@1": 0.8333333333333334,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.9027777777777778
+        },
+        "PARAPHRASE": {
+          "HitRate@1": 0.7368421052631579,
+          "Recall@1": 0.7368421052631579,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.8508771929824562
+        },
+        "DIRECT_FACT": {
+          "HitRate@1": 0.7619047619047619,
+          "Recall@1": 0.7619047619047619,
+          "HitRate@3": 0.9523809523809523,
+          "Recall@3": 0.9523809523809523,
+          "HitRate@5": 0.9523809523809523,
+          "Recall@5": 0.9523809523809523,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.8639455782312925
+        },
+        "MULTI_SECTION": {
+          "HitRate@1": 0.9166666666666666,
+          "Recall@1": 0.4861111111111111,
+          "HitRate@3": 1.0,
+          "Recall@3": 0.8611111111111112,
+          "HitRate@5": 1.0,
+          "Recall@5": 0.8611111111111112,
+          "HitRate@10": 1.0,
+          "Recall@10": 0.9444444444444445,
+          "MRR": 0.9583333333333334
+        },
+        "HARD_NEGATIVE": {
+          "HitRate@1": 0.7777777777777778,
+          "Recall@1": 0.7777777777777778,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.8703703703703703
+        }
+      }
+    },
+    "structure": {
+      "chunk_count": 1328,
+      "parent_count": 0,
+      "average_chunk_tokens": 286.5948795180723,
+      "p50_chunk_tokens": 285.0,
+      "p95_chunk_tokens": 504.0,
+      "index_size_estimate_bytes": 5439488,
+      "embedding_seconds": 0.062495166988810524,
+      "retrieval_seconds": 0.006215832981979474,
+      "embedding_cache_hits": 1401,
+      "embedding_cache_misses": 0,
+      "actual_embedding_count": 0,
+      "metrics": {
+        "Overall": {
+          "HitRate@1": 0.8493150684931506,
+          "Recall@1": 0.7922374429223744,
+          "HitRate@3": 0.958904109589041,
+          "Recall@3": 0.9018264840182648,
+          "HitRate@5": 1.0,
+          "Recall@5": 0.9748858447488585,
+          "HitRate@10": 1.0,
+          "Recall@10": 0.9840182648401826,
+          "MRR": 0.9029680365296804
+        },
+        "TERMINOLOGY": {
+          "HitRate@1": 1.0,
+          "Recall@1": 1.0,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 1.0
+        },
+        "PARAPHRASE": {
+          "HitRate@1": 0.8421052631578947,
+          "Recall@1": 0.8421052631578947,
+          "HitRate@3": 0.9473684210526315,
+          "Recall@3": 0.9473684210526315,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.8991228070175438
+        },
+        "DIRECT_FACT": {
+          "HitRate@1": 0.8571428571428571,
+          "Recall@1": 0.8571428571428571,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 0.9206349206349206
+        },
+        "MULTI_SECTION": {
+          "HitRate@1": 0.5833333333333334,
+          "Recall@1": 0.23611111111111108,
+          "HitRate@3": 0.8333333333333334,
+          "Recall@3": 0.4861111111111111,
+          "HitRate@5": 1.0,
+          "Recall@5": 0.8472222222222222,
+          "HitRate@10": 1.0,
+          "Recall@10": 0.9027777777777778,
+          "MRR": 0.7083333333333334
+        },
+        "HARD_NEGATIVE": {
+          "HitRate@1": 1.0,
+          "Recall@1": 1.0,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "MRR": 1.0
+        }
+      }
+    },
+    "parent_child": {
+      "chunk_count": 5475,
+      "parent_count": 935,
+      "average_chunk_tokens": 69.50977168949771,
+      "p50_chunk_tokens": 51.0,
+      "p95_chunk_tokens": 226.0,
+      "index_size_estimate_bytes": 22425600,
+      "embedding_seconds": 0.13671020799665712,
+      "retrieval_seconds": 0.03937199999927543,
+      "embedding_cache_hits": 5548,
+      "embedding_cache_misses": 0,
+      "actual_embedding_count": 0,
+      "metrics": {
+        "Overall": {
+          "HitRate@1": 0.8082191780821918,
+          "Recall@1": 0.728310502283105,
+          "ParentCoverage@1": 0.7808219178082192,
+          "HitRate@3": 0.9452054794520548,
+          "Recall@3": 0.8767123287671232,
+          "ParentCoverage@3": 0.8858447488584476,
+          "HitRate@5": 0.9452054794520548,
+          "Recall@5": 0.8881278538812785,
+          "ParentCoverage@5": 0.9086757990867579,
+          "HitRate@10": 0.9863013698630136,
+          "Recall@10": 0.9657534246575342,
+          "ParentCoverage@10": 0.9817351598173517,
+          "MRR": 0.8731898238747553
+        },
+        "TERMINOLOGY": {
+          "HitRate@1": 0.9166666666666666,
+          "Recall@1": 0.9166666666666666,
+          "ParentCoverage@1": 0.9166666666666666,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "ParentCoverage@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "ParentCoverage@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "ParentCoverage@10": 1.0,
+          "MRR": 0.9583333333333334
+        },
+        "PARAPHRASE": {
+          "HitRate@1": 0.8421052631578947,
+          "Recall@1": 0.8421052631578947,
+          "ParentCoverage@1": 0.8421052631578947,
+          "HitRate@3": 0.8947368421052632,
+          "Recall@3": 0.8947368421052632,
+          "ParentCoverage@3": 0.8947368421052632,
+          "HitRate@5": 0.8947368421052632,
+          "Recall@5": 0.8947368421052632,
+          "ParentCoverage@5": 0.8947368421052632,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "ParentCoverage@10": 1.0,
+          "MRR": 0.8824561403508772
+        },
+        "DIRECT_FACT": {
+          "HitRate@1": 0.8095238095238095,
+          "Recall@1": 0.8095238095238095,
+          "ParentCoverage@1": 0.9047619047619048,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "ParentCoverage@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "ParentCoverage@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "ParentCoverage@10": 1.0,
+          "MRR": 0.8968253968253967
+        },
+        "MULTI_SECTION": {
+          "HitRate@1": 0.75,
+          "Recall@1": 0.3055555555555555,
+          "ParentCoverage@1": 0.3333333333333333,
+          "HitRate@3": 0.8333333333333334,
+          "Recall@3": 0.4166666666666667,
+          "ParentCoverage@3": 0.47222222222222215,
+          "HitRate@5": 0.8333333333333334,
+          "Recall@5": 0.4861111111111111,
+          "ParentCoverage@5": 0.611111111111111,
+          "HitRate@10": 0.9166666666666666,
+          "Recall@10": 0.7916666666666666,
+          "ParentCoverage@10": 0.8888888888888888,
+          "MRR": 0.7896825396825397
+        },
+        "HARD_NEGATIVE": {
+          "HitRate@1": 0.6666666666666666,
+          "Recall@1": 0.6111111111111112,
+          "ParentCoverage@1": 0.7777777777777778,
+          "HitRate@3": 1.0,
+          "Recall@3": 1.0,
+          "ParentCoverage@3": 1.0,
+          "HitRate@5": 1.0,
+          "Recall@5": 1.0,
+          "ParentCoverage@5": 1.0,
+          "HitRate@10": 1.0,
+          "Recall@10": 1.0,
+          "ParentCoverage@10": 1.0,
+          "MRR": 0.7962962962962963
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "dataset": "java-interview-real-v1",
+  "review_kind": "SUBAGENT_NOT_HUMAN",
+  "human_reviewed": false,
+  "test_frozen": false,
+  "artifacts": {
+    "dev": {
+      "path": "data/datasets/java-interview-real-v1/dev-agent-reviewed.jsonl",
+      "sha256": "2a45aa75709ee11bb27552d0cfb3f27939e95f01de551913cc9823649410cc37",
+      "count": 80,
+      "decisions_path": "data/datasets/java-interview-real-v1/agent-review/dev-decisions.jsonl",
+      "decisions_sha256": "10c8512edeed4872a0cd1039ab9f44067a5217a2284a012bfd4187d8eefe3aca"
+    },
+    "test": {
+      "path": "data/datasets/java-interview-real-v1/test-agent-reviewed.jsonl",
+      "sha256": "b6e6297d5d508d8b91a325000f2a153830be39b7ceac26cd26a9fa2fa0a72292",
+      "count": 40,
+      "decisions_path": "data/datasets/java-interview-real-v1/agent-review/test-decisions.jsonl",
+      "decisions_sha256": "fce584d56bc9bb69ddde5ef3e466dbf6d7785cb4fb18d1e4c8a1e748b7bbe83e"
+    }
+  },
+  "release_files": {
+    "README.md": {
+      "sha256": "68d94c383d037a804a29186cf7c85d66a4e2ba83c35e9d4e3bf76c50da8c5a07",
+      "bytes": 5527
+    },
+    "NOTICE-SOURCES.md": {
+      "sha256": "3a4e4b3087a2d868c175ece4519d5df5e163164af498d99fcd07798d2577cc33",
+      "bytes": 8107
+    },
+    "docs/PHASE1-REPORT.md": {
+      "sha256": "d336889c3320309f33cfaf6862325da33f77e4f97022b40b59375646ebcd6f24",
+      "bytes": 6029
+    },
+    "docs/INTERVIEW-NOTES.md": {
+      "sha256": "9e52ffaff16dba08db95f3168055e762cbc946611fa54f11127c5e58b98332da",
+      "bytes": 3924
+    },
+    "docs/RESUME-MATERIAL.md": {
+      "sha256": "1bb4339b434dd9a1567ccbc42fd3c497f1c7232d68d576d136717161102a4c71",
+      "bytes": 2165
+    },
+    "configs/experiments/qwen-java-interview-real-v1-agent-reviewed.yaml": {
+      "sha256": "e1f7eb9761ca6423961b2184e063957fd9dde8145d2e74e67f85e9f14488c1ef",
+      "bytes": 1022
+    },
+    "data/datasets/java-interview-real-v1/dataset-manifest.json": {
+      "sha256": "4f6da65aa80c8c227aacd00e1546e166191656aabc64e05bdfca1f45cc8ffca8",
+      "bytes": 3138
+    },
+    "data/datasets/java-interview-real-v1/dev-agent-reviewed.jsonl": {
+      "sha256": "2a45aa75709ee11bb27552d0cfb3f27939e95f01de551913cc9823649410cc37",
+      "bytes": 293741
+    },
+    "data/datasets/java-interview-real-v1/test-agent-reviewed.jsonl": {
+      "sha256": "b6e6297d5d508d8b91a325000f2a153830be39b7ceac26cd26a9fa2fa0a72292",
+      "bytes": 141807
+    },
+    "data/datasets/java-interview-real-v1/AGENT-REVIEWED-DEV.json": {
+      "sha256": "14c5355b7c0f3e7ecc0f87ea08bfb4188e6276d0bba4456e07943fd74a983800",
+      "bytes": 350
+    },
+    "data/datasets/java-interview-real-v1/AGENT-REVIEWED-TEST.json": {
+      "sha256": "f94b126707cfa89085efca2990280c6f6baaadf2300607b3370dda22224dd205",
+      "bytes": 352
+    },
+    "data/datasets/java-interview-real-v1/agent-review/dev-decisions.jsonl": {
+      "sha256": "10c8512edeed4872a0cd1039ab9f44067a5217a2284a012bfd4187d8eefe3aca",
+      "bytes": 19651
+    },
+    "data/datasets/java-interview-real-v1/agent-review/test-decisions.jsonl": {
+      "sha256": "fce584d56bc9bb69ddde5ef3e466dbf6d7785cb4fb18d1e4c8a1e748b7bbe83e",
+      "bytes": 9676
+    },
+    "data/datasets/java-interview-real-v1/agent-review/dev-review-report.md": {
+      "sha256": "4c69022ff3e3a83e5d8dc7156bc9116a6d1d462c4f52d94975291a89538b458e",
+      "bytes": 3423
+    },
+    "data/datasets/java-interview-real-v1/agent-review/test-review-report.md": {
+      "sha256": "5bd04d3a72173bfed216d8c54d35ebfb048e06f482436c898faeafb68a8eb3d3",
+      "bytes": 3230
+    },
+    "data/datasets/java-interview-real-v1/agent-review/AGENT-REVIEW-DISCLAIMER.md": {
+      "sha256": "66c743257eabc8d9816ee2aa23d98618e544c7fd22f9b4939cec39aa5d69bb10",
+      "bytes": 245
+    },
+    "results/raw/20260728T083734Z-47450.json": {
+      "sha256": "f6aa8241b20dd7f93197f78074cb1465920fbdc83ed59b06db479a93265d3862",
+      "bytes": 10997
+    },
+    "results/reports/java-interview-real-v1-agent-reviewed.csv": {
+      "sha256": "8f9921eab1259f30de9bbd4c8b4c9c9531e2fae41613a882a899342e8632ac3f",
+      "bytes": 1373
+    },
+    "results/raw/20260728T065728Z-37412.json": {
+      "sha256": "501340cd9769db17a77b8df03c9542e8daa15969bca113befd43dda4c91fcb0b",
+      "bytes": 9814
+    },
+    "results/reports/synthetic-smoke-v1.csv": {
+      "sha256": "edc74517c152aa11df58d21b6f9757160e5f120c05031ed38c1b5418dcc74568",
+      "bytes": 1257
+    }
+  },
+  "disclaimer": {
+    "path": "data/datasets/java-interview-real-v1/agent-review/AGENT-REVIEW-DISCLAIMER.md",
+    "sha256": "66c743257eabc8d9816ee2aa23d98618e544c7fd22f9b4939cec39aa5d69bb10"
+  }
+}

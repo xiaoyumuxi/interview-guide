@@ -1,0 +1,80 @@
+{"sample_id":"java_real_candidate_001","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；问题自然，答案为有依据的简洁概括。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_002","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；XA 协调流程的答案完整且未引入外部知识。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_003","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；AQS 定义与通用能力概括准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_004","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Condition 定义与多等待队列能力均有正文支撑。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_005","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Try、Confirm、Cancel 三阶段职责完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_006","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；独占与共享模式及示例准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_009","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；IoC 与 DI 的关系概括准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_013","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；SACK 机制与收益均由正文直接支持。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_016","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；覆盖索引及免回表含义回答完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_020","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Kafka 五个核心概念逐项对应完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_022","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；AMQP 定义和 RabbitMQ 关系有直接证据。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_024","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；PCB 定义准确且未超出正文。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_026","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；AOT 收益与代价概括完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_027","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Saga 失败后的反向补偿流程准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_028","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；静态化适用条件和请求链路均有证据。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_029","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；浮点误差原因及有限二进制例外完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_031","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；静态上下文无隐式 this 的解释准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_032","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；重载与重写的核心区别回答到位。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_035","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；集合相对数组的灵活性概括准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_036","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；MQ 削峰与异步写入链路完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_037","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；手动 ack 避免消费端丢失的机制准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_038","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；HashMap 与 HashSet 的接口、存储和实现关系完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_039","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；树化判断与小数组优先扩容的答案有直接依据。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_040","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；两种阻塞队列的结构、容量和锁设计均回答完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_042","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；CLH 排队、监控前驱和降低饥饿风险的逻辑成立。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_043","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；平台线程与虚拟线程调度主体区分准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_044","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；wait 属于 Object 的锁语义解释完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_045","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；单核下 CPU 密集和 IO 密集场景区分准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_049","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；无用类的三个必要条件完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_051","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；AOP 与横切关注点分离的答案准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_060","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Redis 单线程的维护、瓶颈和并发成本理由完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_066","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；列举的 Java 特点全部来自正文。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_069","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；BigInteger 的适用范围、存储方式和效率均由该节支撑。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_070","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；主写从读及扩从库分压的回答完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_071","approved":true,"severity":"PASS","reason":"复审通过：问题与答案已明确限定为“直接访问成员”，答案补充了静态方法获得对象引用后可通过该对象访问实例成员；Evidence offset 与 support quotes 严格回放通过。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_079","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；结构、null 支持和选型结论均有依据。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_080","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Map、Set、List 的选型条件回答完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_081","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；Kafka 三项能力与两类场景逐项对应。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_083","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；列举的 BlockingQueue 常见实现完整匹配正文。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_088","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；六种 Java 线程状态完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_089","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；start 与直接 run 的执行语义区分准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_090","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；单核通过线程切换支持多线程的解释准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_096","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；废弃字符串常量的判断与可能回收条件准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_097","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；加载、连接、初始化及连接子阶段完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_100","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；ACID 四项定义完整且无外部扩展。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_101","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；方法、类、接口三种作用位置及建议准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_103","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；队列与消息两项持久化配置及恢复效果完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_106","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；快照读历史版本与当前读加锁的区别准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_107","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；三类 InnoDB 行锁及临键锁组成完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_111","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；过期字典结构和查询判断流程完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_112","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；定期删除与惰性删除组合准确。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_115","approved":true,"severity":"none","reason":"Evidence offset、来源元数据和 support quotes 均回放一致；ACK 与 FIN 合并的条件和结果完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_116","approved":true,"severity":"none","reason":"全语料检索未发现 PostgreSQL 逻辑复制槽及两个 LSN 字段的解释，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_117","approved":true,"severity":"none","reason":"全语料检索未发现 Kubernetes CFS throttling 与 Java 尾延迟机制，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_118","approved":true,"severity":"none","reason":"全语料检索未发现 Flink unaligned checkpoint 与反压处理机制，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_121","approved":true,"severity":"none","reason":"全语料检索未发现 ScopedValue 与 ThreadLocal 继承语义比较，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_122","approved":true,"severity":"none","reason":"语料仅泛泛提及 Pulsar/BookKeeper，未包含 ensemble、write quorum、ack quorum 协作机制，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_124","approved":true,"severity":"none","reason":"全语料检索未发现 Raft joint consensus 成员变更安全性机制，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_125","approved":true,"severity":"none","reason":"语料仅泛泛提及 WebRTC，不包含 ICE restart 或 candidate 重收集条件，按 Unanswerable 放行。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_131","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；实现层级和高级锁能力具有真实逻辑关系。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_132","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；可重入语义与能力边界比较自然且完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_140","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；雪崩、穿透、击穿按触发条件的比较逻辑成立。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_141","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；三类缓存故障与对应治理手段逐项匹配。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_143","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；乐观锁、悲观锁的冲突假设和等待行为比较成立。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_147","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；HashMap 与 ConcurrentHashMap 的结构和并发保护比较完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_148","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；HashMap 并发风险与 JDK 8 ConcurrentHashMap 锁粒度逻辑相关。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_151","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；poll 对 select 的接口改进及保留的 O(N) 问题比较完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_152","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；poll 与 epoll 在注册和就绪返回上的对比成立。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_153","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；IoC 与 AOP 分别对应依赖和横切逻辑，关系自然。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_154","approved":true,"severity":"none","reason":"两段 Evidence offset 与 support quotes 均回放一致；Redis 与 ZooKeeper 锁的数据结构及操作比较完整。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_155","approved":true,"severity":"none","reason":"三段 Evidence offset 与 support quotes 均回放一致；崩溃释放和竞争等待语义的跨实现比较成立。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_157","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；负样本属于锁能力概念簇但不能回答可中断、公平与超时三项能力。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_158","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；负样本与 synchronized/ReentrantLock 同簇但不足以回答实例方法与静态方法的两种锁对象。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_167","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；击穿与雪崩负样本同属缓存故障簇且不能回答布隆过滤器判断。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_174","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；ConcurrentHashMap 与 JDK 8 HashMap 结构负样本语义相近但不能回答并发 put 丢失和 JDK 7 环链。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_175","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；JDK 7 ConcurrentHashMap 与普通 HashMap 并发问题负样本不能回答 JDK 8 的 CAS、synchronized 和桶级锁。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_177","approved":true,"severity":"PASS","reason":"复审通过：两条 Hard Negative 已替换为用户/内核线程模型及纤程/虚拟线程调度内容，仍属于线程概念簇但不能回答共享资源与私有执行现场；offset、support quotes 和 negative IDs 均通过。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_178","approved":true,"severity":"PASS","reason":"复审通过：第二条 Hard Negative 已替换为 epoll 水平/边缘触发语义；poll 对照与 LT/ET 内容虽属 I/O 多路复用概念簇，但组合后仍不能完整回答 select 的集合复制与 O(N) 就绪查找机制；offset、support quotes 和 negative IDs 均通过。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_179","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；Redis 过期锁和 ZooKeeper 前驱监听负样本同簇但不能解释临时节点随会话自动删除。","reviewer":"dev_release_reviewer"}
+{"sample_id":"java_real_candidate_180","approved":true,"severity":"none","reason":"正负 Evidence 均严格回放；RabbitMQ confirm 与 RocketMQ 事务消息同属生产可靠性簇但不能回答 Kafka acks=all 成功条件。","reviewer":"dev_release_reviewer"}

@@ -1,0 +1,117 @@
+{
+  "dataset": "java-interview-real-v1",
+  "source_document_count": 48,
+  "source_repositories": {
+    "JavaGuide": {
+      "repository_url": "https://github.com/Snailclimb/JavaGuide.git",
+      "commit": "8fb36af2bcd92d87c5223214980a9a97ef946f10",
+      "license": "Apache-2.0"
+    },
+    "advanced-java": {
+      "repository_url": "https://github.com/doocs/advanced-java.git",
+      "commit": "1659850d7de4739ac9394dddd6c68466a8c38761",
+      "license": "CC-BY-SA-4.0"
+    }
+  },
+  "offset_basis": "rag_lab_normalized_markdown_v1",
+  "candidate_count": 180,
+  "selected_count": 120,
+  "dev_pending_human_review_count": 80,
+  "test_pending_human_review_count": 40,
+  "selected_type_counts": {
+    "DIRECT_FACT": 32,
+    "PARAPHRASE": 28,
+    "TERMINOLOGY": 18,
+    "MULTI_SECTION": 18,
+    "HARD_NEGATIVE": 14,
+    "UNANSWERABLE": 10
+  },
+  "selected_category_counts": {
+    "distributed": 10,
+    "java-basics": 9,
+    "java-collections": 15,
+    "juc": 19,
+    "jvm": 10,
+    "message-queue": 7,
+    "mysql": 8,
+    "network": 13,
+    "operating-system": 11,
+    "redis": 12,
+    "spring": 10,
+    "system-design": 11
+  },
+  "dev_category_counts": {
+    "distributed": 9,
+    "java-basics": 8,
+    "java-collections": 14,
+    "juc": 18,
+    "jvm": 3,
+    "message-queue": 6,
+    "mysql": 3,
+    "network": 2,
+    "operating-system": 10,
+    "redis": 3,
+    "spring": 6,
+    "system-design": 10
+  },
+  "test_category_counts": {
+    "distributed": 1,
+    "java-basics": 1,
+    "java-collections": 1,
+    "juc": 1,
+    "jvm": 7,
+    "message-queue": 1,
+    "mysql": 5,
+    "network": 11,
+    "operating-system": 1,
+    "redis": 9,
+    "spring": 4,
+    "system-design": 1
+  },
+  "selected_repository_counts": {
+    "JavaGuide": 115,
+    "advanced-java": 20
+  },
+  "dev_repository_counts": {
+    "JavaGuide": 74,
+    "advanced-java": 18
+  },
+  "test_repository_counts": {
+    "JavaGuide": 41,
+    "advanced-java": 2
+  },
+  "embedded_negative_evidence_count": 28,
+  "dev_test_evidence_or_section_leakage": false,
+  "question_generation_model": null,
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "embedding_model_purpose": "semantic_deduplication_only",
+  "dedup_threshold": 0.9,
+  "source_manifest_sha256": "e3993683b6626bc4ff8d2093fbc6b320e6456da517f62281852cb894b4f72431",
+  "notice_sources_sha256": "3a4e4b3087a2d868c175ece4519d5df5e163164af498d99fcd07798d2577cc33",
+  "candidate_sha256": "d6e73a063a7fc18f5ffefe63551919e77fd0d83d3d442b0118bbe6fc60df3ca4",
+  "selected_pending_sha256": "889c9f73e6271cd61e3b31bdd1f37b3642558937e5943850394e7e4120668d80",
+  "dev_pending_sha256": "ea67c56496c7c023b19bb867cc8884b2113dfa9ee1b7be688d82ffc306e7e146",
+  "test_pending_sha256": "52672d57da76b8a93047462ff7017cc3d4e17b42662065b4289e897d5edd3ddb",
+  "dev_human_reviewed": false,
+  "test_human_reviewed": false,
+  "test_frozen": true,
+  "test_freeze_kind": "AGENT_REVIEWED_NOT_HUMAN",
+  "test_agent_frozen_sha256": "713b8b9dac822f067d2fd04f7c322014d5d4bb9adae546b712c6bc734b8d3475",
+  "test_final_decisions_sha256": "0497c680ace885b1b82bb6cd84f67c0b7c752aa383b56c2318e0c2887a35baf5",
+  "dev_agent_reviewed": true,
+  "test_agent_reviewed": true,
+  "agent_review_kind": "SUBAGENT_NOT_HUMAN",
+  "dev_agent_reviewed_sha256": "2a45aa75709ee11bb27552d0cfb3f27939e95f01de551913cc9823649410cc37",
+  "test_agent_reviewed_sha256": "b6e6297d5d508d8b91a325000f2a153830be39b7ceac26cd26a9fa2fa0a72292",
+  "hard_dev_count": 48,
+  "hard_dev_categories": 12,
+  "hard_dev_per_category": 4,
+  "hard_dev_agent_reviewed": true,
+  "hard_dev_review_kind": "AGENT_REVIEWED_NOT_HUMAN",
+  "hard_dev_human_reviewed": false,
+  "hard_dev_agent_reviewed_sha256": "594410e3fa906f52738d1b4673442c4be5d953016cf9b5d1f7eb97700c2d9ba1",
+  "hard_dev_final_decisions_sha256": "58f7f0db8d813893420d9cf307acb0255512ce5ac0294867576757595b66076d",
+  "phase15_test_status": "EXECUTED_ONCE_AND_LOCKED",
+  "test_execution_experiment_id": "20260728T115625Z-57404",
+  "test_execution_ledger_sha256": "8589101abbe983cb022d817702ee1eb3a05d98457fdaac5114c57dba7a238a3c"
+}

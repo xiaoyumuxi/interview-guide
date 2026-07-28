@@ -1,0 +1,74 @@
+experiment:
+  name: java-interview-real-v1-multisection-ablation
+  seed: 42
+
+corpus:
+  raw_dir: data/corpus/java-interview-real-v1
+  markdown_dir: data/markdown/java-interview-real-v1
+  manifest_path: data/corpus/java-interview-real-v1/manifest.jsonl
+
+datasets:
+  current_dev:
+    path: data/datasets/java-interview-real-v1/dev-agent-reviewed.jsonl
+    version: java-interview-real-v1-dev-agent-reviewed
+  hard_dev:
+    path: data/datasets/java-interview-real-v1/hard-dev-agent-reviewed.jsonl
+    version: java-interview-real-v1-hard-dev-agent-reviewed
+
+embedding:
+  provider: sentence_transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  dimensions: 1024
+  batch_size: 16
+  cache_path: data/cache/embeddings-java-interview-real-v1.sqlite3
+  model_cache_path: data/cache/models
+  device: mps
+  local_files_only: true
+
+tokenizer:
+  provider: huggingface
+  model: Qwen/Qwen3-Embedding-0.6B
+  local_files_only: true
+  fallback_to_approximate: true
+  cache_dir: data/cache/models
+
+chunking:
+  structure: {max_tokens: 512, heading_prefix: true}
+
+retrieval:
+  top_k: [3, 5, 10]
+  candidate_top_n: 20
+
+evaluation:
+  any_overlap_threshold: 0.01
+  evidence_coverage_thresholds: [0.25, 0.50, 0.75]
+  primary_coverage_threshold: 0.50
+
+multi_query:
+  enabled: true
+  detector: rule_based_zh
+  decomposer: rule_based_zh
+  include_original_query: true
+  max_subqueries: 4
+  candidate_top_n: 20
+
+rrf:
+  enabled: true
+  k: 60
+
+section_diversity:
+  enabled: true
+  max_chunks_per_section: 2
+
+context:
+  max_tokens: 3000
+  deduplicate: true
+  neighbor_expansion: true
+  parent_expansion: true
+
+cloud:
+  enabled: false
+
+results:
+  ablation_csv: results/reports/multisection-ablation.csv
+  context_csv: results/reports/context-quality-comparison.csv

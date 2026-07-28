@@ -1,0 +1,16 @@
+.venv/
+.uv-cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+data/cache/
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/synthetic-smoke-v1/
+!data/raw/synthetic-smoke-v1/*.md
+data/sources/
+data/corpus/java-interview-real-v1/
+data/datasets/real/
+data/markdown/*
+!data/markdown/.gitkeep

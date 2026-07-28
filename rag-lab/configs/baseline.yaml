@@ -1,0 +1,44 @@
+experiment:
+  name: synthetic-smoke-v1
+  seed: 42
+
+corpus:
+  raw_dir: data/raw/synthetic-smoke-v1
+  markdown_dir: data/markdown/synthetic-smoke-v1
+
+dataset:
+  path: data/datasets/synthetic-smoke-v1/dev.jsonl
+  version: synthetic-smoke-v1-dev
+
+embedding:
+  provider: hashing
+  model: rag-lab/hashing-char-word-v1
+  dimensions: 1024
+  batch_size: 32
+  cache_path: data/cache/embeddings-phase1.sqlite3
+  device: cpu
+
+chunking:
+  strategies: [fixed, structure, parent_child]
+  fixed:
+    chunk_size: 512
+    overlap: 64
+  structure:
+    max_tokens: 512
+    heading_prefix: true
+  parent_child:
+    child_max_tokens: 256
+    heading_prefix: true
+
+retrieval:
+  top_k: [1, 3, 5, 10]
+
+evaluation:
+  evidence_coverage_threshold: 0.01
+  duplicate_similarity_threshold: 0.90
+
+cloud:
+  enabled: false
+
+results:
+  comparison_csv: results/reports/synthetic-smoke-v1.csv

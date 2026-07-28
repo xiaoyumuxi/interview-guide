@@ -1,0 +1,9 @@
+dataset,scheme,cold_query_count,cold_generated_subqueries,cold_query_embedding_count,cold_cache_hits,cold_cache_misses,cold_actual_embedding_count,cold_retrieval_calls,cold_average_candidates,cold_p50_latency_ms,cold_p95_latency_ms,cold_approx_average_context_tokens,cold_qwen_average_context_tokens,cold_context_token_budget_mode,cold_test_executed
+current_dev,S0,73,0,73,0,73,73,73,10.0,267.6211250072811,376.5112920082174,,,,False
+current_dev,S1,73,44,117,0,117,117,117,24.52054794520548,311.7710420046933,1020.9064169903286,,,,False
+current_dev,S2,73,44,117,0,117,117,117,24.52054794520548,318.2211660023313,1054.4297500164248,,,,False
+current_dev,S3,73,44,117,0,117,117,117,24.52054794520548,326.8591250234749,1117.3419579863548,2638.904109589041,2212.2328767123286,approximate,False
+hard_query_dev,S0,48,0,48,0,48,48,48,10.0,448.1077920063399,532.5479579914827,,,,False
+hard_query_dev,S1,48,29,77,0,77,77,77,24.583333333333332,506.5342920133844,1380.2499170124065,,,,False
+hard_query_dev,S2,48,29,77,0,77,77,77,24.583333333333332,531.5497500123456,1327.3661249841098,,,,False
+hard_query_dev,S3,48,29,77,0,77,77,77,24.583333333333332,524.4019999809097,1300.9680419927463,2826.3125,2340.6666666666665,approximate,False

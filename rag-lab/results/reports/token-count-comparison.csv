@@ -1,0 +1,4 @@
+strategy,chunk_count,approx_average_chunk_tokens,qwen_average_chunk_tokens,approx_p95_chunk_tokens,qwen_p95_chunk_tokens,tokenizer_model,token_count_mode,chunk_boundaries_changed
+fixed,889,499.0686164229471,439.50168728908886,512.0,571.0,Qwen/Qwen3-Embedding-0.6B,huggingface,False
+structure,1328,286.5948795180723,251.80948795180723,504.0,494.0,Qwen/Qwen3-Embedding-0.6B,huggingface,False
+parent_child,5475,69.50977168949771,60.9103196347032,226.0,189.0,Qwen/Qwen3-Embedding-0.6B,huggingface,False

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "binary comparison",
+    "query": "CMS 和 G1 的垃圾回收机制有什么区别？",
+    "should_detect": true,
+    "subqueries": ["CMS 的垃圾回收机制是什么？", "G1 的垃圾回收机制是什么？"]
+  },
+  {
+    "name": "three item separately",
+    "query": "缓存雪崩、缓存穿透和缓存击穿分别如何触发？",
+    "should_detect": true,
+    "subqueries": ["缓存雪崩如何触发？", "缓存穿透如何触发？", "缓存击穿如何触发？"]
+  },
+  {
+    "name": "why but",
+    "query": "为什么 CMS 容易产生内存碎片，而 G1 可以通过 Region 缓解？",
+    "should_detect": true,
+    "subqueries": ["为什么CMS 容易产生内存碎片？", "为什么G1 可以通过 Region 缓解？"]
+  },
+  {
+    "name": "english methods",
+    "query": "CompletableFuture.thenApply 和 thenCompose 有什么区别？",
+    "should_detect": true,
+    "subqueries": ["CompletableFuture.thenApply 是什么？", "thenCompose 是什么？"]
+  },
+  {
+    "name": "single point",
+    "query": "AQS 为什么使用 CLH 队列？",
+    "should_detect": false,
+    "subqueries": []
+  },
+  {
+    "name": "ambiguous conjunction must not split",
+    "query": "线程和锁是什么关系？",
+    "should_detect": true,
+    "subqueries": []
+  }
+]

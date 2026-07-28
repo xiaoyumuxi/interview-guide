@@ -1,0 +1,9 @@
+{
+  "dataset": "java-interview-real-v1-hard-dev-agent-reviewed",
+  "samples": 48,
+  "review_kind": "AGENT_REVIEWED_NOT_HUMAN",
+  "human_reviewed": false,
+  "test_executed": false,
+  "test_status": "NOT EXECUTED",
+  "sha256": "594410e3fa906f52738d1b4673442c4be5d953016cf9b5d1f7eb97700c2d9ba1"
+}

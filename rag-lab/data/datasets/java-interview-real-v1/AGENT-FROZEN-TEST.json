@@ -1,0 +1,14 @@
+{
+  "dataset": "java-interview-real-v1",
+  "split": "test",
+  "count": 40,
+  "sha256": "713b8b9dac822f067d2fd04f7c322014d5d4bb9adae546b712c6bc734b8d3475",
+  "source_sha256": "b6e6297d5d508d8b91a325000f2a153830be39b7ceac26cd26a9fa2fa0a72292",
+  "decisions_sha256": "0497c680ace885b1b82bb6cd84f67c0b7c752aa383b56c2318e0c2887a35baf5",
+  "reviewer": "final_test_freeze_reviewer",
+  "freeze_kind": "AGENT_REVIEWED_NOT_HUMAN",
+  "human_reviewed": false,
+  "frozen": true,
+  "test_executed": false,
+  "frozen_at": "2026-07-28T11:56:13.764668+00:00"
+}
