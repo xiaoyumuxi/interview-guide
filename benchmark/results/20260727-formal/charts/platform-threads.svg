@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="450.0" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="600">Concurrency vs Peak Platform Threads</text>
+<line x1="92" y1="448.0" x2="864" y2="448.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="452.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">0.0</text>
+<line x1="92" y1="370.0" x2="864" y2="370.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="374.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">14.8</text>
+<line x1="92" y1="292.0" x2="864" y2="292.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="296.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">29.6</text>
+<line x1="92" y1="214.0" x2="864" y2="214.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="218.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">44.4</text>
+<line x1="92" y1="136.0" x2="864" y2="136.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="140.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">59.1</text>
+<line x1="92" y1="58.0" x2="864" y2="58.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="62.0" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">73.9</text>
+<line x1="92" y1="58" x2="92" y2="448" stroke="#111827" stroke-width="1.5"/>
+<line x1="92" y1="448" x2="864" y2="448" stroke="#111827" stroke-width="1.5"/>
+<text x="92.0" y="473" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12">10</text>
+<text x="285.0" y="473" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12">50</text>
+<text x="478.0" y="473" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12">100</text>
+<text x="671.0" y="473" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12">200</text>
+<text x="864.0" y="473" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12">500</text>
+<text x="478.0" y="500" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14">Concurrency</text>
+<text x="22" y="253.0" text-anchor="middle" transform="rotate(-90 22 253.0)" font-family="system-ui,sans-serif" font-size="14">Peak platform threads</text>
+<polyline points="92.0,110.3 285.0,105.1 478.0,105.1 671.0,99.8 864.0,99.8" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="92.0" cy="110.3" r="4.5" fill="#dc2626"><title>Fixed-32 C=10: 64.000</title></circle>
+<circle cx="285.0" cy="105.1" r="4.5" fill="#dc2626"><title>Fixed-32 C=50: 65.000</title></circle>
+<circle cx="478.0" cy="105.1" r="4.5" fill="#dc2626"><title>Fixed-32 C=100: 65.000</title></circle>
+<circle cx="671.0" cy="99.8" r="4.5" fill="#dc2626"><title>Fixed-32 C=200: 66.000</title></circle>
+<circle cx="864.0" cy="99.8" r="4.5" fill="#dc2626"><title>Fixed-32 C=500: 66.000</title></circle>
+<polyline points="92.0,126.2 285.0,252.8 478.0,205.3 671.0,173.6 864.0,110.3" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="92.0" cy="126.2" r="4.5" fill="#2563eb"><title>Virtual C=10: 61.000</title></circle>
+<circle cx="285.0" cy="252.8" r="4.5" fill="#2563eb"><title>Virtual C=50: 37.000</title></circle>
+<circle cx="478.0" cy="205.3" r="4.5" fill="#2563eb"><title>Virtual C=100: 46.000</title></circle>
+<circle cx="671.0" cy="173.6" r="4.5" fill="#2563eb"><title>Virtual C=200: 52.000</title></circle>
+<circle cx="864.0" cy="110.3" r="4.5" fill="#2563eb"><title>Virtual C=500: 64.000</title></circle>
+<line x1="674" y1="74" x2="702" y2="74" stroke="#dc2626" stroke-width="3"/>
+<text x="710" y="78" font-family="system-ui,sans-serif" font-size="13">Fixed-32</text>
+<line x1="674" y1="98" x2="702" y2="98" stroke="#2563eb" stroke-width="3"/>
+<text x="710" y="102" font-family="system-ui,sans-serif" font-size="13">Virtual</text>
+</svg>

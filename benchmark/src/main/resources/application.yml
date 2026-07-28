@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: virtual-thread-llm-benchmark
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: ${SERVER_PORT:18080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+benchmark:
+  client:
+    enabled: ${BENCHMARK_CLIENT_ENABLED:true}
+  mock:
+    enabled: ${BENCHMARK_MOCK_ENABLED:false}
+    base-url: ${BENCHMARK_MOCK_BASE_URL:http://127.0.0.1:18081/v1}
+    delay: ${BENCHMARK_MOCK_DELAY:1500ms}
+
+llm:
+  executor:
+    type: ${LLM_EXECUTOR_TYPE:fixed}
+    fixed-pool-size: ${LLM_EXECUTOR_FIXED_POOL_SIZE:32}
+    queue-capacity: ${LLM_EXECUTOR_QUEUE_CAPACITY:10000}
+
+logging:
+  level:
+    root: WARN
+    interview.guide.benchmark: INFO

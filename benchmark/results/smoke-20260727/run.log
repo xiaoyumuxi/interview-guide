@@ -1,0 +1,2 @@
+running mode=fixed concurrency=10 repeat=1
+running mode=virtual concurrency=10 repeat=1

@@ -1,0 +1,18 @@
+timestamp_utc=2026-07-27T15:38:59Z
+Darwin yaojingxi.local 27.0.0 Darwin Kernel Version 27.0.0: Tue Jul 14 21:40:50 PDT 2026; root:xnu-13432.0.94.501.4~1/RELEASE_ARM64_T8132 arm64
+openjdk version "25.0.3" 2026-04-21 LTS
+OpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)
+java_home=/Users/yaoyao/.gradle/jdks/eclipse_adoptium-25-aarch64-os_x.2/jdk-25.0.3+9/Contents/Home
+jvm_args=-Xms512m -Xmx512m -XX:+UseG1GC -Djdk.tracePinnedThreads=full
+mode=fixed
+fixed_pool_size=32
+mock_delay_ms=1500
+concurrencies=10
+repeats=1
+warmup_seconds=1
+requests_per_worker=1
+Apple M4
+10
+10
+25769803776

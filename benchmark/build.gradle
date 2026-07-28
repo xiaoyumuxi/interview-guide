@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
+group = 'com.interview'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    maven { url = uri('https://maven.aliyun.com/repository/public/') }
+    maven { url = uri('https://maven.aliyun.com/repository/spring/') }
+    mavenCentral()
+    maven { url = uri('https://repo.spring.io/milestone') }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation "org.springframework.ai:spring-ai-client-chat:${libs.versions.springAi.get()}"
+    implementation "org.springframework.ai:spring-ai-openai:${libs.versions.springAi.get()}"
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.register('printJavaToolchainHome') {
+    doLast {
+        def launcher = javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(25)
+        }.get()
+        println launcher.metadata.installationPath.asFile.absolutePath
+    }
+}
