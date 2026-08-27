@@ -31,6 +31,7 @@ from rag_lab.embedding import (
   SentenceTransformerEmbeddingProvider,
 )
 from rag_lab.evaluation.metrics import evaluate_results
+from rag_lab.generation import run_generation
 from rag_lab.models import DocumentChunk
 from rag_lab.retrieval import ExactDenseRetriever
 
@@ -227,6 +228,18 @@ class BenchmarkRunner:
       "actual_embedding_count": provider.actual_embedding_count - before_actual,
       "metrics": metrics,
     }
+    generation_config = self.config.get("generation", {})
+    if generation_config.get("enabled", False):
+      generation_top_k = int(generation_config.get("top_k", max_k))
+      if generation_top_k > max_k:
+        raise ValueError(
+          f"generation.top_k={generation_top_k} exceeds retrieved max top_k={max_k}",
+        )
+      output["generation"] = run_generation(
+        samples=samples,
+        results=results,
+        config=generation_config,
+      )
     LOGGER.info(
       "%s Documents=%d Chunks=%d CacheHits=%d CacheMisses=%d ActualEmbeddings=%d "
       "EmbeddingTime=%.4fs RetrievalTime=%.4fs EvidenceRecall@5/50=%.4f MRR=%.4f",
@@ -261,9 +274,15 @@ class BenchmarkRunner:
     path = self.root / configured_path
     path.parent.mkdir(parents=True, exist_ok=True)
     top_ks = self.config["retrieval"]["top_k"]
+    generation_fields = [
+      "ReferenceTokenPrecision", "ReferenceTokenRecall", "ReferenceTokenF1",
+      "JudgeCorrectness", "JudgeCompleteness", "JudgeFaithfulness",
+      "JudgeRelevance", "JudgeOverall", "GenerationLatencyMs",
+    ]
     fields = [
-      "experiment_id", "strategy", "embedding_model", "dataset_version", "chunk_count",
-      "parent_count", "approx_average_chunk_tokens", "qwen_average_chunk_tokens",
+      "experiment_id", "strategy", "embedding_model", "dataset_version",
+      "generation_model", "prompt_id", "prompt_version", "prompt_sha256",
+      "chunk_count", "parent_count", "approx_average_chunk_tokens", "qwen_average_chunk_tokens",
       "approx_p95_chunk_tokens", "qwen_p95_chunk_tokens", "token_count_mode",
       "index_size_estimate_bytes", "embedding_seconds", "retrieval_seconds",
       "retrieval_calls", "p50_retrieval_latency_ms", "p95_retrieval_latency_ms",
@@ -281,17 +300,27 @@ class BenchmarkRunner:
       *[f"GoldBeforeNegative@{k}" for k in top_ks],
       "AverageGoldNegativeScoreMargin", "P50GoldNegativeScoreMargin",
       "MinimumGoldNegativeScoreMargin", "PairwiseGoldWinRate",
+      *generation_fields,
     ]
     rows = []
     for strategy, result in report["strategies"].items():
       overall = result["metrics"]["Overall"]
+      generation = result.get("generation", {})
+      generation_overall = generation.get("metrics", {}).get("Overall", {})
+      prompt = generation.get("prompt", {})
+      generation_provider = generation.get("provider", {})
       rows.append({
         "experiment_id": report["experiment_id"],
         "strategy": strategy,
         "embedding_model": report["embedding_model"],
         "dataset_version": report["dataset_version"],
+        "generation_model": generation_provider.get("model", ""),
+        "prompt_id": prompt.get("id", ""),
+        "prompt_version": prompt.get("version", ""),
+        "prompt_sha256": prompt.get("sha256", ""),
         **{field: result[field] for field in fields if field in result},
         **{field: overall[field] for field in fields if field in overall},
+        **{field: generation_overall[field] for field in fields if field in generation_overall},
       })
     with path.open("w", encoding="utf-8", newline="") as handle:
       writer = csv.DictWriter(handle, fieldnames=fields)
