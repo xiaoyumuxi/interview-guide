@@ -1,0 +1,83 @@
+experiment:
+  name: java-interview-real-v1-phase2-workbench-dev
+  seed: 42
+
+corpus:
+  raw_dir: data/corpus/java-interview-real-v1
+  markdown_dir: data/markdown/java-interview-real-v1
+  manifest_path: data/corpus/java-interview-real-v1/manifest.jsonl
+
+dataset:
+  path: data/datasets/java-interview-real-v1/dev-agent-reviewed.jsonl
+  version: java-interview-real-v1-dev-agent-reviewed
+
+embedding:
+  provider: sentence_transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  dimensions: 1024
+  batch_size: 16
+  cache_path: data/cache/embeddings-java-interview-real-v1.sqlite3
+  model_cache_path: data/cache/models
+  device: mps
+  local_files_only: true
+
+tokenizer:
+  provider: huggingface
+  model: Qwen/Qwen3-Embedding-0.6B
+  local_files_only: true
+  fallback_to_approximate: true
+  cache_dir: data/cache/models
+
+chunking:
+  # Workbench runs one selected strategy at a time when launched from the UI.
+  strategies: [fixed, structure, parent_child]
+  fixed: {chunk_size: 512, overlap: 64}
+  structure: {max_tokens: 512, heading_prefix: true}
+  parent_child: {child_max_tokens: 256, heading_prefix: true}
+
+retrieval:
+  top_k: [1, 3, 5, 10]
+
+evaluation:
+  any_overlap_threshold: 0.01
+  evidence_coverage_thresholds: [0.25, 0.50, 0.75]
+  primary_coverage_threshold: 0.50
+  context_precision: true
+  hard_negative_metrics: true
+
+generation:
+  enabled: true
+  top_k: 5
+  temperature: 0.0
+  provider:
+    provider: openai_compatible
+    # Point this at a local vLLM/Ollama/OpenAI-compatible gateway before running.
+    model: Qwen/Qwen3-8B
+    base_url: http://127.0.0.1:8000/v1
+    timeout_seconds: 120
+  prompt:
+    id: interview-rag-answer
+    version: v1
+    system: >-
+      You are a Java backend interview tutor. Answer only from the retrieved context.
+      Be technically precise, concise, and explicitly state when the context is insufficient.
+    template: |-
+      Question:
+      {question}
+
+      Retrieved context:
+      {context}
+
+      Give a direct interview-ready answer with the key mechanism, important boundaries,
+      and one concise example when useful.
+  judge:
+    enabled: true
+    temperature: 0.0
+    # Omit provider to reuse generation.provider. For stricter evaluation, configure
+    # a separate stronger judge model here using the same openai_compatible schema.
+
+cloud:
+  enabled: false
+
+results:
+  comparison_csv: results/reports/phase2-workbench-comparison.csv
