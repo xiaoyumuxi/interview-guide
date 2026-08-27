@@ -1,8 +1,9 @@
 # rag-lab
 
 `rag-lab` 是 InterviewGuide RAG 模块的独立离线实验环境。它只做文档转换、Evidence
-数据集、Chunk 对照、Embedding、精确检索和离线评测，不提供 Web 服务、用户系统、
-对话系统或知识库管理。
+数据集、Chunk 对照、Embedding、精确检索和离线评测，不提供面向业务用户的 Web 服务、
+用户系统、对话系统或知识库管理。Phase 2 额外提供仅用于本地实验分析的 Evaluation
+Workbench。
 
 Phase 1 固定比较三种策略：
 
@@ -27,8 +28,9 @@ PDF / DOCX / Markdown / HTML / TXT
   -> AnyOverlap / Evidence Coverage & Recall / Context Precision / Hard Negative metrics
 ```
 
-除向量化外，正式数据构建不调用本地或远程生成模型。题目与简洁 Reference Answer
-已由子智能体基于固定真实 Evidence 编写并保存为草稿；Qwen 只用于问题语义去重和检索。
+除向量化外，Phase 1/1.5 正式数据构建不调用本地或远程生成模型。题目与简洁 Reference
+Answer 已由子智能体基于固定真实 Evidence 编写并保存为草稿；Qwen 只用于问题语义去重和检索。
+Phase 2 的生成评测是独立可选层，不改变现有 Retrieval Ground Truth 与指标定义。
 
 ## 安装
 
@@ -180,6 +182,49 @@ EvidenceRecall@5/50 仅为 `0.6892`。完整边界与结果见
 [`docs/PHASE1.5-REPORT.md`](docs/PHASE1.5-REPORT.md) 和
 [`docs/SPLIT-AUDIT.md`](docs/SPLIT-AUDIT.md)。
 
+## Phase 2：生成评测与 Workbench
+
+Phase 2 在现有 Retrieval Runner 后增加可选 Generation Evaluation，不改变 Phase 1.5
+检索指标。`generation.enabled: false` 时旧实验行为保持不变；开启后会将 Top-K Context
+送入 OpenAI-compatible Chat endpoint，并记录：
+
+- Prompt ID / Version / SHA-256 与完整 System/User Template；
+- 生成 Answer、ReferenceToken Precision/Recall/F1 与生成耗时；
+- 可选 LLM-as-a-Judge：Correctness、Completeness、Faithfulness、Relevance；
+- 原有 Retrieval / Context / Hard Negative 指标，便于端到端同时分析。
+
+示例配置：
+
+```text
+configs/experiments/qwen-java-interview-phase2-workbench.yaml
+```
+
+直接运行：
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run python scripts/benchmark_chunking.py \
+  --config configs/experiments/qwen-java-interview-phase2-workbench.yaml
+```
+
+启动历史对比 Workbench：
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run python scripts/launch_workbench.py
+```
+
+若希望在界面中直接修改 Prompt 并执行 Dev A/B：
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run python scripts/launch_workbench.py \
+  --config configs/experiments/qwen-java-interview-phase2-workbench.yaml
+```
+
+Workbench 扫描 `results/raw/*.json`，可比较任意 `experiment_id + strategy` 的指标绝对值、
+Delta、Delta%，并并排显示 Prompt 内容、Version 与 Hash。页面触发的实验仍统一调用
+`BenchmarkRunner`，因此不能绕过冻结 Test 的 dataset hash 和一次性 execution ledger。
+
+完整说明见 [`docs/PHASE2-WORKBENCH.md`](docs/PHASE2-WORKBENCH.md)。
+
 ## 测试
 
 ```bash
@@ -188,5 +233,6 @@ UV_CACHE_DIR=.uv-cache uv run pytest
 
 Golden tests 还覆盖 span union、overlap 去重、Evidence Coverage/Recall、
 AllEvidenceHit、ContextPrecision、Hard Negative、query detector/decomposer、RRF、
-section diversity、context dedup/token budget 和 Test execution guard。Phase 1.5
-不实现 Semantic Chunking、BM25、Hybrid、HNSW 或 LLM-as-a-Judge。
+section diversity、context dedup/token budget 和 Test execution guard。Phase 1.5 本身仍不实现
+Semantic Chunking、BM25、Hybrid、HNSW 或 LLM-as-a-Judge；LLM Judge 仅作为 Phase 2
+Generation Evaluation 的可选层。
