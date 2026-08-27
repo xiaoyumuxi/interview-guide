@@ -8,6 +8,7 @@ import interview.guide.modules.voiceinterview.dto.WebSocketSubtitleMessage;
 import interview.guide.modules.voiceinterview.model.VoiceInterviewMessageEntity;
 import interview.guide.modules.voiceinterview.model.VoiceInterviewSessionEntity;
 import interview.guide.modules.voiceinterview.config.VoiceInterviewProperties;
+import interview.guide.modules.voiceinterview.context.VoiceContextCompressor;
 import interview.guide.modules.voiceinterview.service.QwenAsrService;
 import interview.guide.modules.voiceinterview.service.QwenTtsService;
 import interview.guide.modules.voiceinterview.service.DashscopeLlmService;
@@ -61,6 +62,7 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
     private final QwenTtsService ttsService;
     private final DashscopeLlmService llmService;
     private final VoiceInterviewService interviewService;
+    private final VoiceContextCompressor voiceContextCompressor;
     private final VoiceInterviewProperties voiceInterviewProperties;
     private final ObjectProvider<MeterRegistry> meterRegistryProvider;
 
@@ -219,15 +221,15 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
                     return;
                 }
 
-                List<String> history = getHistory(sessionId);
-                if (history != null && !history.isEmpty()) {
-                    // 已有历史对话（如重连/恢复），不重复开场
-                    return;
-                }
-
                 VoiceInterviewSessionEntity sessionEntity = getSessionEntity(sessionId);
                 if (sessionEntity == null) {
                     log.warn("Session entity not found when sending opening question: {}", sessionId);
+                    return;
+                }
+
+                List<String> history = getHistory(sessionId, sessionEntity.getLlmProvider());
+                if (history != null && !history.isEmpty()) {
+                    // 已有历史对话（如重连/恢复），不重复开场
                     return;
                 }
 
@@ -552,16 +554,16 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
             return;
         }
 
-        if (!isFinalSegment) {
-            state.markSttActivity();
-            sendSubtitle(session, state.getMergeBufferPreviewWithPartial(recognizedText), false);
+        // 用户已提交或 AI 正在回答时，丢弃上一轮迟到的 partial/final，防止污染下一轮字幕。
+        if (state.isProcessing().get() || state.isAiSpeakingOrCooldown()) {
+            log.debug("Discarding late STT result for session {}, final={}: {}",
+                sessionId, isFinalSegment, recognizedText);
             return;
         }
 
-        // 用户已提交、LLM 正在处理时，丢弃迟到的 STT 定稿段，防止污染下一轮 mergeBuffer
-        if (state.isProcessing().get()) {
-            log.debug("Discarding late STT final segment during processing for session {}: {}",
-                sessionId, recognizedText);
+        if (!isFinalSegment) {
+            state.markSttActivity();
+            sendSubtitle(session, state.getMergeBufferPreviewWithPartial(recognizedText), false);
             return;
         }
 
@@ -643,7 +645,7 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
                 return;
             }
 
-            List<String> conversationHistory = getHistory(sessionId);
+            List<String> conversationHistory = getHistory(sessionId, sessionEntity.getLlmProvider());
 
             long llmStartNanos = System.nanoTime();
             AtomicLong firstTokenAtNanos = new AtomicLong(0);
@@ -1063,8 +1065,7 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
                         }
                     } catch (Exception e) {
                         future.cancel(true);
-                        log.warn("[Session: {}] Streaming TTS chunk {} failed: {}",
-                            sessionId, index, e.getMessage());
+                        log.warn("[Session: {}] Streaming TTS chunk {} failed", sessionId, index, e);
                     } finally {
                         futures.remove(index);
                         index++;
@@ -1224,45 +1225,39 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
     }
 
     /**
-     * Get chat history for session
-     * Load conversation history from database
+     * Get chat history for session.
+     * 加载对话历史并进行上下文压缩（滑动窗口 + 可选增量摘要），再格式化为文本行。
+     * 当 contextCompression.enabled=false 时行为与改前完全一致（返回全量格式化轮次）。
      */
-    private List<String> getHistory(String sessionId) {
+    private List<String> getHistory(String sessionId, String llmProvider) {
         try {
-            List<VoiceInterviewMessageEntity> messages = interviewService.getConversationHistory(sessionId);
+            List<VoiceInterviewMessageEntity> turns = interviewService.getConversationHistory(sessionId);
+            VoiceInterviewMessageEntity summaryRow = interviewService.loadSummaryRow(sessionId).orElse(null);
+
+            String cachedSummary = summaryRow != null
+                ? VoiceInterviewMessageEntity.trimToNull(summaryRow.getAiGeneratedText()) : null;
+            int coveredTurns = (summaryRow != null && summaryRow.getSequenceNum() != null)
+                ? Math.max(0, -summaryRow.getSequenceNum() - 1) : 0;
+
+            var compressed = voiceContextCompressor.compress(
+                turns, cachedSummary, coveredTurns, llmProvider);
+
             List<String> history = new ArrayList<>();
-            String pendingAiQuestion = null;
+            if (compressed.summary() != null && !compressed.summary().isBlank()) {
+                history.add("【对话摘要】" + compressed.summary());
+            }
+            history.addAll(voiceContextCompressor.formatRecent(compressed.recent()));
 
-            for (VoiceInterviewMessageEntity msg : messages) {
-                String aiText = VoiceInterviewMessageEntity.trimToNull(msg.getAiGeneratedText());
-                String userText = VoiceInterviewMessageEntity.trimToNull(msg.getUserRecognizedText());
-
-                if (pendingAiQuestion != null) {
-                    history.add("面试官：" + pendingAiQuestion);
-                    pendingAiQuestion = null;
-                    if (userText != null) {
-                        history.add("候选人：" + userText);
-                    }
-                    if (aiText != null) {
-                        pendingAiQuestion = aiText;
-                    }
-                    continue;
-                }
-
-                if (aiText != null && userText != null) {
-                    history.add("面试官：" + aiText);
-                    history.add("候选人：" + userText);
-                } else if (aiText != null) {
-                    pendingAiQuestion = aiText;
-                } else if (userText != null) {
-                    history.add("候选人：" + userText);
+            // 摘要发生变化则持久化（UPSERT），保证断线重连后不重复生成
+            if (compressed.changed() && compressed.summary() != null && !compressed.summary().isBlank()) {
+                try {
+                    interviewService.saveSummaryRow(sessionId, compressed.summary(), compressed.coveredTurns());
+                } catch (Exception e) {
+                    log.warn("持久化上下文摘要失败（不影响本次应答），session {}", sessionId, e);
                 }
             }
-            if (pendingAiQuestion != null) {
-                history.add("面试官：" + pendingAiQuestion);
-            }
 
-            log.debug("Loaded {} messages from history for session {}", history.size(), sessionId);
+            log.debug("Loaded {} compressed history entries for session {}", history.size(), sessionId);
             return history;
         } catch (Exception e) {
             log.error("Error loading conversation history for session {}", sessionId, e);

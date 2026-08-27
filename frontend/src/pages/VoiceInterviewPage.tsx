@@ -91,11 +91,15 @@ export default function VoiceInterviewPage() {
   const aiTextRef = useRef('');
   useEffect(() => { aiTextRef.current = aiText; }, [aiText]);
   useEffect(() => { isAsrReadyRef.current = isAsrReady; }, [isAsrReady]);
-  useEffect(() => { isSubmittingRef.current = isSubmitting; }, [isSubmitting]);
 
   const setAiSpeaking = useCallback((value: boolean) => {
     isAiSpeakingRef.current = value;
     setIsAiSpeaking(value);
+  }, []);
+
+  const setSubmitting = useCallback((value: boolean) => {
+    isSubmittingRef.current = value;
+    setIsSubmitting(value);
   }, []);
 
   const clearPendingAiTextCommit = useCallback(() => {
@@ -157,12 +161,18 @@ export default function VoiceInterviewPage() {
     aiAudioPendingRef.current = false;
     clearAudioPlaybackWatchdog();
     setAiSpeaking(false);
-    setIsSubmitting(false);
+    setSubmitting(false);
     clearPendingAiTextCommit();
     commitAiMessage(aiTextRef.current.trim());
     setAiText('');
     setAiAudio('');
-  }, [clearAudioPlaybackWatchdog, clearPendingAiTextCommit, commitAiMessage, setAiSpeaking]);
+  }, [
+    clearAudioPlaybackWatchdog,
+    clearPendingAiTextCommit,
+    commitAiMessage,
+    setAiSpeaking,
+    setSubmitting,
+  ]);
 
   // --- Chunked audio playback via AudioContext ---
   const getAudioContext = useCallback(() => {
@@ -205,7 +215,7 @@ export default function VoiceInterviewPage() {
         clearInterval(drainCheckRef.current!);
         drainCheckRef.current = null;
         setAiSpeaking(false);
-        setIsSubmitting(false);
+        setSubmitting(false);
         clearPendingAiTextCommit();
         commitAiMessage(aiTextRef.current.trim());
         setAiText('');
@@ -213,10 +223,10 @@ export default function VoiceInterviewPage() {
         clearInterval(drainCheckRef.current!);
         drainCheckRef.current = null;
         setAiSpeaking(false);
-        setIsSubmitting(false);
+        setSubmitting(false);
       }
     }, 100);
-  }, [clearPendingAiTextCommit, commitAiMessage, setAiSpeaking]);
+  }, [clearPendingAiTextCommit, commitAiMessage, setAiSpeaking, setSubmitting]);
 
   const handleAudioChunk = useCallback((base64Wav: string, _index: number, isLast: boolean) => {
     try {
@@ -349,7 +359,7 @@ export default function VoiceInterviewPage() {
       return;
     }
     setIsRecording(false);
-    setIsSubmitting(true);
+    setSubmitting(true);
     const text = userText.trim();
     setMessages(prev => [
       ...prev,
@@ -357,7 +367,7 @@ export default function VoiceInterviewPage() {
     ]);
     setUserText('');
     wsRef.current.sendControl('submit', { text });
-  }, [userText, isSubmitting]);
+  }, [userText, isSubmitting, setSubmitting]);
 
   const createWebSocketHandlers = useCallback(() => ({
     onOpen: () => {
@@ -366,6 +376,10 @@ export default function VoiceInterviewPage() {
     },
     onMessage: () => {},
     onSubtitle: (text: string, isFinal: boolean) => {
+      // 上一轮提交后可能仍收到迟到的 ASR partial，不允许它覆盖下一轮输入区。
+      if (!isFinal && (isSubmittingRef.current || isAiSpeakingRef.current)) {
+        return;
+      }
       // isFinal=true 由 triggerLlmResponse 触发，表示本轮用户回答已提交到 LLM
       if (isFinal && text.trim()) {
         setMessages(prev => {
@@ -404,13 +418,13 @@ export default function VoiceInterviewPage() {
       setAiText(normalized);
       setAiSpeaking(false);
       if (!normalized) {
-        setIsSubmitting(false);
+        setSubmitting(false);
         return;
       }
       clearPendingAiTextCommit();
       pendingAiTextCommitRef.current = setTimeout(() => {
         commitAiMessage(normalized);
-        setIsSubmitting(false);
+        setSubmitting(false);
         setAiSpeaking(false);
         pendingAiTextCommitRef.current = null;
       }, 2500);
@@ -433,7 +447,7 @@ export default function VoiceInterviewPage() {
           aiAudioPendingRef.current = false;
         }
         commitAiMessage(normalized);
-        setIsSubmitting(false);
+        setSubmitting(false);
         setAiSpeaking(false);
         pendingAiTextCommitRef.current = null;
       }, 15000);
@@ -498,6 +512,7 @@ export default function VoiceInterviewPage() {
     handleAudioChunk,
     scheduleChunkDrainCompletion,
     setAiSpeaking,
+    setSubmitting,
   ]);
 
   const connectWithHandlers = useCallback((sessionId: number, wsUrl: string) => {
@@ -819,6 +834,7 @@ export default function VoiceInterviewPage() {
                   <AnimatePresence mode="wait">
                     {isAiSpeaking || aiText ? (
                       <motion.p
+                        data-testid="voice-current-ai-text"
                         key="ai-active"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -829,6 +845,7 @@ export default function VoiceInterviewPage() {
                       </motion.p>
                     ) : userText ? (
                       <motion.p
+                        data-testid="voice-current-user-text"
                         key="user-active"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -876,6 +893,7 @@ export default function VoiceInterviewPage() {
                 />
 
                 <button
+                  data-testid="voice-submit-answer"
                   onClick={handleSubmitAnswer}
                   disabled={!canSubmit}
                   className={`px-5 py-2.5 rounded-xl font-medium text-sm transition-all ${
@@ -892,6 +910,7 @@ export default function VoiceInterviewPage() {
                 </button>
 
                 <button
+                  data-testid="voice-end-interview"
                   onClick={handleEndInterview}
                   disabled={connectionStatus !== 'connected'}
                   className="px-4 py-2 rounded-xl bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors disabled:opacity-50"
